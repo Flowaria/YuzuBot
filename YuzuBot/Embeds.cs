@@ -90,7 +90,7 @@ internal static class Embeds
                 gachaResult += Resources.Emote_Gacha3Star;
                 result3StarCount++;
             }
-            else if (result <= 0.185f || (result2StarCount == 0 && i == 9))
+            else if (result <= 0.185f || i == 9)
             {
                 gachaResult += Resources.Emote_Gacha2Star;
                 result2StarCount++;
