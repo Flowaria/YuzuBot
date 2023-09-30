@@ -13,6 +13,9 @@ internal static class Embeds
 {
     private static readonly Random s_RNG = new();
     private static readonly Color s_YuzuColor = new(255, 100, 105);
+    private static readonly Color s_GachaBlueColor = new(37, 190, 255);
+    private static readonly Color s_GachaYellowColor = new(255, 244, 37);
+    private static readonly Color s_GachaPinkColor = new(255, 90, 195);
 
     public static Embed BuildYuzuStatus(string thumbnailURL, float memoryUsageInMB, string? alternativeTitle = null)
     {
@@ -65,6 +68,68 @@ internal static class Embeds
             .WithImageUrl(emote.Url)
             .WithColor(sender.GetDisplayColor())
             .WithFooter(emote.Name);
+
+        return embed.Build();
+    }
+
+    public static Embed BuildGachaResult(out string gachaResult)
+    {
+        gachaResult = "";
+
+        var rng = new Random();
+        var result3StarCount = 0;
+        var result2StarCount = 0;
+        for (int i = 0; i<10; i++)
+        {
+            if (i == 5)
+                gachaResult += '\n';
+
+            var result = rng.NextDouble();
+            if (result <= 0.03f)
+            {
+                gachaResult += Resources.Emote_Gacha3Star;
+                result3StarCount++;
+            }
+            else if (result <= 0.185f || (result2StarCount == 0 && i == 9))
+            {
+                gachaResult += Resources.Emote_Gacha2Star;
+                result2StarCount++;
+            }
+            else
+            {
+                gachaResult += Resources.Emote_Gacha1Star;
+            }
+        }
+
+
+        var embed = new EmbedBuilder()
+            .WithTitle("10연차 결과에요...!");
+
+
+        if (result3StarCount >= 2)
+        {
+            embed.Description = $"3성이 {result3StarCount}개나..? 굉장해요!";
+            embed.ThumbnailUrl = Resources.YuzuImage_Smile;
+            embed.Color = s_GachaPinkColor;
+        }
+        else if(result3StarCount >= 1)
+        {
+            embed.Description = $"3성이 나왔어요...! 오늘 하루는 운이 좋을거... 같아요...";
+            embed.ThumbnailUrl = Resources.YuzuImage_SmileSmall;
+            embed.Color = s_GachaPinkColor;
+        }
+        else if (result2StarCount >= 2)
+        {
+            embed.Description = $"운이 안좋았네요...";
+            embed.ThumbnailUrl = Resources.YuzuImage_A;
+            embed.Color = s_GachaYellowColor;
+        }
+        else
+        {
+            embed.Description = $"올블루라니... 그런...";
+            embed.ThumbnailUrl = Resources.YuzuImage_Cry;
+            embed.Color = s_GachaBlueColor;
+        }
 
         return embed.Build();
     }

@@ -70,6 +70,33 @@ namespace YuzuBot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;:paper_1star:1157724704182902924&gt;.
+        /// </summary>
+        internal static string Emote_Gacha1Star {
+            get {
+                return ResourceManager.GetString("Emote_Gacha1Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;:paper_2star:1157724705441189991&gt;.
+        /// </summary>
+        internal static string Emote_Gacha2Star {
+            get {
+                return ResourceManager.GetString("Emote_Gacha2Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;:paper_3star:1157724708788244623&gt;.
+        /// </summary>
+        internal static string Emote_Gacha3Star {
+            get {
+                return ResourceManager.GetString("Emote_Gacha3Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696388990242987/yuzu_a.png.
         /// </summary>
         internal static string YuzuImage_A {

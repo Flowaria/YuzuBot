@@ -50,6 +50,7 @@ internal partial class YuzuBot
         await _Client.SetStatusAsync(UserStatus.DoNotDisturb);
         _ = Task.Run(StartUpdateActivity, _UpdateToken.Token);
         _ = Task.Run(StartUpdateGC, _UpdateToken.Token);
+        await SetupCommands();
     }
 
     private async Task StartUpdateGC()
