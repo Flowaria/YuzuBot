@@ -50,7 +50,7 @@ internal static class Embeds
         embed.Title = post.TitleHead != null ? $"{post.TitleHead} {post.Title}" : post.Title;
         if (TryParseDCDate(post.UploadDate, out var uploadTime))
         {
-            embed.Timestamp = uploadTime;
+            embed.Timestamp = new DateTimeOffset(uploadTime, new TimeSpan(hours: 9, minutes: 0, seconds: 0));
         }
 
         if (!string.IsNullOrEmpty(post.ThumbnailURL))
