@@ -64,7 +64,7 @@ internal static class Embeds
     public static Embed BuildLargeEmote(SocketGuildUser sender, Emote emote)
     {
         var embed = new EmbedBuilder()
-            .WithAuthor(sender.GlobalName, sender.GetDisplayAvatarUrl())
+            .WithAuthor(sender.DisplayName, sender.GetDisplayAvatarUrl())
             .WithImageUrl(emote.Url)
             .WithColor(sender.GetDisplayColor())
             .WithFooter(emote.Name);

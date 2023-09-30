@@ -34,11 +34,11 @@ internal partial class YuzuBot
         IEnumerable<Embed>? embeds = embed != null ? new[] { embed } : null; 
         if (fileStream != null && filename != null)
         {
-            return await wbc.SendFileAsync(fileStream, filename, msg, avatarUrl: copyUser.GetDisplayAvatarUrl(), username: copyUser.GlobalName, embeds: embeds);
+            return await wbc.SendFileAsync(fileStream, filename, msg, avatarUrl: copyUser.GetDisplayAvatarUrl(), username: copyUser.DisplayName, embeds: embeds);
         }
         else
         {
-            return await wbc.SendMessageAsync(msg, avatarUrl: copyUser.GetDisplayAvatarUrl(), username: copyUser.GlobalName, embeds: embeds);
+            return await wbc.SendMessageAsync(msg, avatarUrl: copyUser.GetDisplayAvatarUrl(), username: copyUser.DisplayName, embeds: embeds);
         }
     }
 }
