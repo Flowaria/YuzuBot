@@ -15,8 +15,14 @@ internal partial class YuzuBot
     {
         var gachaCmd = new SlashCommandBuilder()
             .WithName("gacha")
-            .WithDescription("10챠 가챠 시뮬을 돌립니다.");
+            .WithDescription("10챠 모의 가챠를 돌립니다.");
+
+        var gachaSilentCmd = new SlashCommandBuilder()
+            .WithName("gacha-silent")
+            .WithDescription("10챠 모의 가챠를 돌립니다. (결과는 커맨드를 사용한 선생님에게만 보여요!)");
+
         await _Client.CreateGlobalApplicationCommandAsync(gachaCmd.Build());
+        await _Client.CreateGlobalApplicationCommandAsync(gachaSilentCmd.Build());
         _Client.SlashCommandExecuted += SlashCommandExecuted;
     }
 
@@ -33,6 +39,11 @@ internal partial class YuzuBot
             case "gacha":
                 var embed = Embeds.BuildGachaResult(out var gachaResult);
                 await arg.RespondAsync(text: gachaResult, embed: embed);
+                return;
+
+            case "gacha-silent":
+                embed = Embeds.BuildGachaResult(out gachaResult);
+                await arg.RespondAsync(text: gachaResult, embed: embed, ephemeral: true);
                 return;
         }
 
