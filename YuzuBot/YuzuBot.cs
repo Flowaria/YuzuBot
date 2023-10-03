@@ -16,7 +16,7 @@ internal partial class YuzuBot
     private readonly static DiscordSocketConfig s_CFG = new()
     {
         MessageCacheSize = 100,
-        GatewayIntents = GatewayIntents.Guilds | GatewayIntents.GuildMessages | GatewayIntents.MessageContent
+        GatewayIntents = GatewayIntents.Guilds | GatewayIntents.GuildMessages | GatewayIntents.MessageContent | GatewayIntents.GuildMembers
     };
 
     private readonly DiscordSocketClient _Client;
