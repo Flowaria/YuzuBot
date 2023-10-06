@@ -24,7 +24,7 @@ internal partial class YuzuBot
 
     private async Task StartUpdateActivity()
     {
-        var rng = new Random();
+        var rng = Random.Shared;
         while(true)
         {
             var (activity, minMinute, maxMinute) = _YuzuActivities[rng.Next(_YuzuActivities.Length)];

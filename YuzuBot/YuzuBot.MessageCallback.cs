@@ -84,7 +84,7 @@ internal partial class YuzuBot
     private static async Task ShowStatus(SocketMessage arg)
     {
         using var process = Process.GetCurrentProcess();
-        var rng = new Random();
+        var rng = Random.Shared;
         if (rng.Next(69) == 0)
         {
             var embed = Embeds.BuildYuzuStatusJoke(Resources.YuzuImage_Smile);

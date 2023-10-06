@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace YuzuBot;
 internal static class Embeds
 {
-    private static readonly Random s_RNG = new();
     private static readonly Color s_YuzuColor = new(255, 100, 105);
     private static readonly Color s_GachaBlueColor = new(37, 190, 255);
     private static readonly Color s_GachaYellowColor = new(255, 244, 37);
@@ -34,7 +33,7 @@ internal static class Embeds
             .WithColor(s_YuzuColor)
             .WithThumbnailUrl(thumbnailURL);
 
-        embed.AddField("음란도", $"{s_RNG.NextDouble():P}");
+        embed.AddField("음란도", $"{Random.Shared.NextDouble():P}");
         return embed.Build();
     }
 
@@ -76,7 +75,7 @@ internal static class Embeds
     {
         gachaResult = "";
 
-        var rng = new Random();
+        var rng = Random.Shared;
         var result3StarCount = 0;
         var result2StarCount = 0;
         for (int i = 0; i<10; i++)
