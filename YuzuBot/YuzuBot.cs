@@ -1,14 +1,5 @@
-﻿using Discord.WebSocket;
-using Discord;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Discord.Commands;
-using static System.Net.WebRequestMethods;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
+﻿using Discord;
+using Discord.WebSocket;
 
 namespace YuzuBot;
 internal partial class YuzuBot
@@ -23,7 +14,7 @@ internal partial class YuzuBot
     private readonly string _Token;
 
     private readonly CancellationTokenSource _UpdateToken = new();
-    
+
     public ulong BotID { get; private set; }
     public string BotMentionString { get; private set; } = string.Empty;
 

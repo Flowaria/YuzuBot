@@ -1,9 +1,4 @@
 ﻿using Discord;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YuzuBot;
 internal partial class YuzuBot
@@ -25,7 +20,7 @@ internal partial class YuzuBot
     private async Task StartUpdateActivity()
     {
         var rng = Random.Shared;
-        while(true)
+        while (true)
         {
             var (activity, minMinute, maxMinute) = _YuzuActivities[rng.Next(_YuzuActivities.Length)];
             await _Client.SetActivityAsync(activity);

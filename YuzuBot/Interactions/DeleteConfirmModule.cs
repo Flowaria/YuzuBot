@@ -1,29 +1,12 @@
 ﻿using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using YuzuBot.Modules;
 
 namespace YuzuBot.Interactions;
 internal class DeleteConfirmModule : InteractionModuleBase
 {
     private const string ID_DeleteConfirm = "delete-message-confirm";
     private const string ID_DeleteDecline = "delete-message-decline";
-
-    private static readonly MessageComponent s_ConfirmPromptComps;
-
-    static DeleteConfirmModule()
-    {
-        s_ConfirmPromptComps = new ComponentBuilder()
-            .WithButton("확인", $"{ID_DeleteConfirm};", ButtonStyle.Danger)
-            .WithButton("취소하기", ID_DeleteDecline, ButtonStyle.Secondary)
-            .Build();
-    }
 
     public static async Task Send(IMessage targetMessage, IDiscordInteraction context)
     {

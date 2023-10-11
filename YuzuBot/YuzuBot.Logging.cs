@@ -1,11 +1,5 @@
 ﻿using Discord;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YuzuBot;
 internal partial class YuzuBot

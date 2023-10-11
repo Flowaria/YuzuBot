@@ -1,13 +1,6 @@
 ﻿using Discord;
 using Discord.Webhook;
 using Discord.WebSocket;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
 
 namespace YuzuBot;
 internal partial class YuzuBot
@@ -20,7 +13,7 @@ internal partial class YuzuBot
         }
 
         using var webhookClient = await OpenWebhookClient(ch);
-        IEnumerable<Embed>? embeds = embed != null ? new[] { embed } : null; 
+        IEnumerable<Embed>? embeds = embed != null ? new[] { embed } : null;
         if (fileStream != null && filename != null)
         {
             return await webhookClient.SendFileAsync(fileStream, filename, msg, avatarUrl: copyUser.GetDisplayAvatarUrl(), username: copyUser.DisplayName, embeds: embeds);

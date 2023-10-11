@@ -1,12 +1,6 @@
 ﻿using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YuzuBot.Modules;
 
 namespace YuzuBot.Interactions;
@@ -84,7 +78,7 @@ internal sealed class GachaMenuModule : InteractionModuleBase
         embed.AddField("모집 포인트:", "10", inline: true);
         embed.AddField($"최대 누적 엘리그마:", $"{Resources.Emote_Eligma}x{gachaResult.EligmaCount}", inline: true);
         embed.WithFooter("/gacha-menu");
-        
+
         await DeferAsync();
         await Context.Interaction.DeleteOriginalResponseAsync();
 

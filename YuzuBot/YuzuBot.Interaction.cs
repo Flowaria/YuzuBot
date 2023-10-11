@@ -1,13 +1,5 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Discord.Interactions;
 using YuzuBot.Interactions;
-using YuzuBot.Modules;
 using RunMode = Discord.Interactions.RunMode;
 
 namespace YuzuBot;
@@ -23,11 +15,11 @@ internal partial class YuzuBot
         });
 
         LogDebug("Creating Interaction Modules");
-        
+
         var gachaModule = await _IntService.AddModuleAsync<GachaModule>(null);
         var gachaMenuModule = await _IntService.AddModuleAsync<GachaMenuModule>(null);
         var deleteConfirmModule = await _IntService.AddModuleAsync<DeleteConfirmModule>(null);
-        
+
         LogDebug("Modules Created");
 
         await _IntService.AddModulesGloballyAsync(deleteMissing: true, gachaModule, gachaMenuModule, deleteConfirmModule);

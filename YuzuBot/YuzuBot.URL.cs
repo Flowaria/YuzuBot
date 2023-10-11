@@ -1,14 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Reflection.PortableExecutable;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using YuzuBot.Modules;
 
@@ -22,7 +15,7 @@ internal partial class YuzuBot
             await ProcessURL_DCInside(context, author, url);
         }
     }
-    
+
     private async Task ProcessURL_DCInside(IMessage context, SocketGuildUser _, string url)
     {
         using var ms = new MemoryStream();

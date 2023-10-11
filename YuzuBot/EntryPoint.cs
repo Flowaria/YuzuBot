@@ -1,7 +1,4 @@
-﻿using Discord;
-using Discord.WebSocket;
-
-namespace YuzuBot;
+﻿namespace YuzuBot;
 
 internal static class EntryPoint
 {
@@ -22,7 +19,7 @@ internal static class EntryPoint
         MainAsync().GetAwaiter().GetResult();
     }
 
-    
+
     public static async Task MainAsync()
     {
         s_Bot = new(s_BotToken);

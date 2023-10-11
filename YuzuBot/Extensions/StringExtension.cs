@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YuzuBot;
+﻿namespace YuzuBot;
 internal static class StringExtension
 {
     public static string ToShorten(this string str, int maxLength, string? shortendEnding = null)
