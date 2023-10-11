@@ -37,8 +37,8 @@ internal sealed class GachaMenuModule : InteractionModuleBase
         s_GachaMenuComps = comps.Build();
 
         comps = new ComponentBuilder()
-            .WithButton("다시 돌리기", ID_GachaRetryButton, ButtonStyle.Primary)
-            .WithButton("결과 삭제", ID_GachaDeleteButton, ButtonStyle.Danger);
+            .WithButton("한번 더 모집", ID_GachaRetryButton, ButtonStyle.Primary, Emotes.RepeatButton)
+            .WithButton("삭제", ID_GachaDeleteButton, ButtonStyle.Danger);
 
         s_GachaRetryComps = comps.Build();
     }
@@ -50,7 +50,7 @@ internal sealed class GachaMenuModule : InteractionModuleBase
         await RespondAsync(embed: embed.Build(), components: s_GachaMenuComps, ephemeral: true);
     }
 
-    [ComponentInteraction("gacha-selectmenu")]
+    [ComponentInteraction(ID_GachaSelectMenu)]
     public async Task GachaMenuSelected(string[] selected)
     {
         GachaResult gachaResult;
@@ -94,7 +94,7 @@ internal sealed class GachaMenuModule : InteractionModuleBase
             components: s_GachaRetryComps);
     }
 
-    [ComponentInteraction("gacha-retry")]
+    [ComponentInteraction(ID_GachaRetryButton)]
     public async Task GachaRetryButton()
     {
         if (Context.Interaction is not SocketMessageComponent arg)
@@ -161,7 +161,7 @@ internal sealed class GachaMenuModule : InteractionModuleBase
         await DeferAsync();
     }
 
-    [ComponentInteraction("gacha-delete")]
+    [ComponentInteraction(ID_GachaDeleteButton)]
     public async Task GachaDeleteButton()
     {
         if (Context.Interaction is not SocketMessageComponent arg)
@@ -176,6 +176,6 @@ internal sealed class GachaMenuModule : InteractionModuleBase
             return;
         }
 
-        await arg.Message.DeleteAsync();
+        await DeleteConfirmModule.Send(arg.Message, Context.Interaction);
     }
 }
