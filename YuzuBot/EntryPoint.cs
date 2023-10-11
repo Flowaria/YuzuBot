@@ -8,7 +8,7 @@ internal static class EntryPoint
     private static string s_BotToken = string.Empty;
     private static YuzuBot? s_Bot;
 
-    public static void Main(string[] args)
+    public static void Main()
     {
         var tokenPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "botToken");
         if (!File.Exists(tokenPath))

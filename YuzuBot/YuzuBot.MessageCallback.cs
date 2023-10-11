@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using YuzuBot.Modules;
 
 namespace YuzuBot;
 internal partial class YuzuBot
@@ -87,31 +88,30 @@ internal partial class YuzuBot
         var rng = Random.Shared;
         if (rng.Next(69) == 0)
         {
-            var embed = Embeds.BuildYuzuStatusJoke(Resources.YuzuImage_Smile);
-            var jokeMessage = await arg.Channel.SendMessageAsync(embed: embed,
+            var embed = YuzuChatBox.Create("지금 저의 상태에요 선생님...!", expression: YuzuExpression.Smile);
+            embed.AddField("음란도", $"{Random.Shared.NextDouble():P}");
+
+            var jokeMessage = await arg.Channel.SendMessageAsync(embed: embed.Build(),
                 messageReference: arg.Reference,
                 flags: MessageFlags.SuppressNotification,
                 allowedMentions: AllowedMentions.None);
 
             await Task.Delay(3000);
 
-            embed = Embeds.BuildYuzuStatus(
-                Resources.YuzuImage_Despair,
-                process.WorkingSet64 / (1024.0f * 1024.0f),
-                "방금 그건 잊어주세요!!! 이게 제 상태에요!!");
+            embed = YuzuChatBox.Create("방금 그건 잊어주세요!!! 이게 제 상태에요!!", expression: YuzuExpression.Despair);
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.000}MB");
 
             await jokeMessage.ModifyAsync(p =>
             {
-                p.Embed = embed;
+                p.Embed = embed.Build();
             });
         }
         else
         {
-            var embed = Embeds.BuildYuzuStatus(
-           Resources.YuzuImage_Default,
-           process.WorkingSet64 / (1024.0f * 1024.0f));
+            var embed = YuzuChatBox.Create("지금 저의 상태에요 선생님...", expression: YuzuExpression.Default);
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.000}MB");
 
-            await arg.Channel.SendMessageAsync(embed: embed,
+            await arg.Channel.SendMessageAsync(embed: embed.Build(),
                 messageReference: arg.Reference,
                 flags: MessageFlags.SuppressNotification,
                 allowedMentions: AllowedMentions.None);

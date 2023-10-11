@@ -22,14 +22,16 @@ internal partial class YuzuBot
         Console.WriteLine(log.ToString());
     }
 
+#pragma warning disable IDE0051 // Remove unused private members
     private static void LogInfo(string msg, Exception? exception = null) => Log(msg, LogSeverity.Info, exception);
     private static void LogWarning(string msg, Exception? exception = null) => Log(msg, LogSeverity.Warning, exception);
     private static void LogError(string msg, Exception? exception = null) => Log(msg, LogSeverity.Error, exception);
     private static void LogCritical(string msg, Exception? exception = null) => Log(msg, LogSeverity.Critical, exception);
 
     [Conditional("DEBUG")]
-    private void LogDebug(string msg, Exception? exception = null) => Log(msg, LogSeverity.Debug, exception);
+    private static void LogDebug(string msg, Exception? exception = null) => Log(msg, LogSeverity.Debug, exception);
 
     [Conditional("DEBUG")]
-    private void LogVerbose(string msg, Exception? exception = null) => Log(msg, LogSeverity.Verbose, exception);
+    private static void LogVerbose(string msg, Exception? exception = null) => Log(msg, LogSeverity.Verbose, exception);
+#pragma warning restore IDE0051 // Remove unused private members
 }

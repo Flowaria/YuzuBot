@@ -120,6 +120,9 @@
   <data name="DCThumnail" xml:space="preserve">
     <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157699755590303925/dc_logo.png</value>
   </data>
+  <data name="Emote_Eligma" xml:space="preserve">
+    <value>&lt;:eligma:1161526665286013000&gt;</value>
+  </data>
   <data name="Emote_Gacha1Star" xml:space="preserve">
     <value>&lt;:paper_1star:1157724704182902924&gt;</value>
   </data>
@@ -128,6 +131,12 @@
   </data>
   <data name="Emote_Gacha3Star" xml:space="preserve">
     <value>&lt;:paper_3star:1157724708788244623&gt;</value>
+  </data>
+  <data name="Emote_Gacha3StarPickup" xml:space="preserve">
+    <value>&lt;:pickup_v2:1160600962491220058&gt;</value>
+  </data>
+  <data name="Emote_Pyroxene" xml:space="preserve">
+    <value>&lt;:pyroxene:1161527096389144626&gt;</value>
   </data>
   <data name="YuzuImage_A" xml:space="preserve">
     <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696388990242987/yuzu_a.png</value>

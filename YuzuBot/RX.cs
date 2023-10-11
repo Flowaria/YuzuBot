@@ -16,11 +16,13 @@ internal static class RX
     public static readonly Regex REPLACE_FIX_TWITTER = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)twitter\.com", RegexOptions.IgnoreCase);
     public static readonly Regex REPLACE_FIX_X = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)x\.com", RegexOptions.IgnoreCase);
 
+    public static readonly Regex GACHA_STAT_NUMBER = new(@"(?<=\>x)[0-9|]*");
+
     public static string ReplaceToFixEmbedURLS(string content)
     {
         var newStr = REPLACE_FIX_PIXIV.Replace(content, "ppxiv.net");
         newStr = REPLACE_FIX_TWITTER.Replace(newStr, "fxtwitter.com");
-        return REPLACE_FIX_X.Replace(newStr, "fxtwitter.com");
+        return REPLACE_FIX_X.Replace(newStr, "fixupx.com");
     }
 
     public static bool TryFullMatch(this Regex regex, string input, out Match? match)

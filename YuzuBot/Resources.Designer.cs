@@ -70,6 +70,15 @@ namespace YuzuBot {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;:eligma:1161526665286013000&gt;.
+        /// </summary>
+        internal static string Emote_Eligma {
+            get {
+                return ResourceManager.GetString("Emote_Eligma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;:paper_1star:1157724704182902924&gt;.
         /// </summary>
         internal static string Emote_Gacha1Star {
@@ -93,6 +102,24 @@ namespace YuzuBot {
         internal static string Emote_Gacha3Star {
             get {
                 return ResourceManager.GetString("Emote_Gacha3Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;:pickup_v2:1160600962491220058&gt;.
+        /// </summary>
+        internal static string Emote_Gacha3StarPickup {
+            get {
+                return ResourceManager.GetString("Emote_Gacha3StarPickup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;:pyroxene:1161527096389144626&gt;.
+        /// </summary>
+        internal static string Emote_Pyroxene {
+            get {
+                return ResourceManager.GetString("Emote_Pyroxene", resourceCulture);
             }
         }
         

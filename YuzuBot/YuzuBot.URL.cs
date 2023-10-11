@@ -10,6 +10,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using YuzuBot.Modules;
 
 namespace YuzuBot;
 internal partial class YuzuBot
@@ -22,7 +23,7 @@ internal partial class YuzuBot
         }
     }
     
-    private async Task ProcessURL_DCInside(IMessage context, SocketGuildUser author, string url)
+    private async Task ProcessURL_DCInside(IMessage context, SocketGuildUser _, string url)
     {
         using var ms = new MemoryStream();
         if (!(await TryGetContentFromURL(url, outputStream: ms)).Success)

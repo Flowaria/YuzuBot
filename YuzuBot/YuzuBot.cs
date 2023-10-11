@@ -41,6 +41,7 @@ internal partial class YuzuBot
         _UpdateToken.Cancel();
         _UpdateToken.Dispose();
         _Client.Dispose();
+        _IntService?.Dispose();
     }
 
     private async Task OnReady()
@@ -50,7 +51,7 @@ internal partial class YuzuBot
         await _Client.SetStatusAsync(UserStatus.DoNotDisturb);
         _ = Task.Run(StartUpdateActivity, _UpdateToken.Token);
         _ = Task.Run(StartUpdateGC, _UpdateToken.Token);
-        await SetupCommands();
+        await SetupInteractions();
     }
 
     private async Task StartUpdateGC()
@@ -73,5 +74,7 @@ internal partial class YuzuBot
         await _Client.LogoutAsync();
         await _Client.StopAsync();
         _UpdateToken.Cancel();
+        _IntService?.Dispose();
+        _IntService = null;
     }
 }
