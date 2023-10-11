@@ -99,7 +99,7 @@ internal partial class YuzuBot
             await Task.Delay(3000);
 
             embed = YuzuChatBox.Create("방금 그건 잊어주세요!!! 이게 제 상태에요!!", expression: YuzuExpression.Despair);
-            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.000}MB");
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB");
 
             await jokeMessage.ModifyAsync(p =>
             {
@@ -109,7 +109,7 @@ internal partial class YuzuBot
         else
         {
             var embed = YuzuChatBox.Create("지금 저의 상태에요 선생님...", expression: YuzuExpression.Default);
-            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.000}MB");
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB");
 
             await arg.Channel.SendMessageAsync(embed: embed.Build(),
                 messageReference: arg.Reference,
