@@ -61,6 +61,16 @@ internal partial class YuzuBot
             }
         }
 
+        //Remove Zzalbang Images
+        var zzalbangDivs = viewNode.SelectNodes("//div[@id='zzbang_div']");
+        if (zzalbangDivs != null)
+        {
+            foreach (var child in zzalbangDivs.ToArray())
+            {
+                child.Remove();
+            }
+        }
+
         //Remove External Video Area
         var externalVids = viewNode.SelectNodes("//div[@class='og-div']");
         if (externalVids != null)
