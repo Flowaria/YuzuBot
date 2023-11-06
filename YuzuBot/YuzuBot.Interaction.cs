@@ -19,6 +19,7 @@ internal partial class YuzuBot
         var gachaModule = await _IntService.AddModuleAsync<GachaModule>(null);
         var gachaMenuModule = await _IntService.AddModuleAsync<GachaMenuModule>(null);
         var deleteConfirmModule = await _IntService.AddModuleAsync<DeleteConfirmModule>(null);
+        //var aEmoteModule = await _IntService.AddModuleAsync<AnimatedEmoteModule>(null);
 
         LogDebug("Modules Created");
 

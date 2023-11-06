@@ -9,4 +9,8 @@ internal static class Emotes
 
     public static readonly Emoji RepeatButton = Emoji.Parse("🔁");
     public static readonly Emoji RedCross = Emoji.Parse("❌");
+    public static readonly Emoji RightArrow = Emoji.Parse("▶️");
+    public static readonly Emoji LeftArrow = Emoji.Parse("◀️");
+    public static readonly Emoji RightEndArrow = Emoji.Parse("⏭️");
+    public static readonly Emoji LeftEndArrow = Emoji.Parse("⏮️");
 }
