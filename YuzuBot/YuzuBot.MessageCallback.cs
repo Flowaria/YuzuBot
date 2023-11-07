@@ -77,7 +77,7 @@ internal partial class YuzuBot
         }
     }
 
-    private static async Task ShowStatus(SocketMessage arg)
+    private async Task ShowStatus(SocketMessage arg)
     {
         using var process = Process.GetCurrentProcess();
         var rng = Random.Shared;
@@ -94,7 +94,11 @@ internal partial class YuzuBot
             await Task.Delay(3000);
 
             embed = YuzuChatBox.Create("방금 그건 잊어주세요!!! 이게 제 상태에요!!", expression: YuzuExpression.Despair);
-            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB");
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB", inline: true);
+            
+            var upTime = DateTime.Now - _ReadyTime;
+            var upTimeString = $"{upTime.Days}d:{upTime.Hours}h:{upTime.Minutes}m:{upTime.Seconds}s";
+            embed.AddField("업타임", upTimeString, inline: true);
 
             await jokeMessage.ModifyAsync(p =>
             {
@@ -104,7 +108,11 @@ internal partial class YuzuBot
         else
         {
             var embed = YuzuChatBox.Create("지금 저의 상태에요 선생님...", expression: YuzuExpression.Default);
-            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB");
+            embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB", inline: true);
+
+            var upTime = DateTime.Now - _ReadyTime;
+            var upTimeString = $"{upTime.Days}d:{upTime.Hours}h:{upTime.Minutes}m:{upTime.Seconds}s";
+            embed.AddField("업타임", upTimeString, inline: true);
 
             await arg.Channel.SendMessageAsync(embed: embed.Build(),
                 messageReference: arg.Reference,

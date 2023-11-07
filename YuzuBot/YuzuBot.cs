@@ -15,6 +15,8 @@ internal partial class YuzuBot
 
     private readonly CancellationTokenSource _UpdateToken = new();
 
+    private DateTime _ReadyTime;
+
     public ulong BotID { get; private set; }
     public string BotMentionString { get; private set; } = string.Empty;
 
@@ -43,6 +45,7 @@ internal partial class YuzuBot
         _ = Task.Run(StartUpdateActivity, _UpdateToken.Token);
         _ = Task.Run(StartUpdateGC, _UpdateToken.Token);
         await SetupInteractions();
+        _ReadyTime = DateTime.Now;
     }
 
     private async Task StartUpdateGC()
