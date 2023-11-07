@@ -16,8 +16,8 @@ internal static class RX
     public static string ReplaceToFixEmbedURLS(string content)
     {
         var newStr = REPLACE_FIX_PIXIV.Replace(content, "ppxiv.net");
-        newStr = REPLACE_FIX_TWITTER.Replace(newStr, "c.vxtwitter.com");
-        return REPLACE_FIX_X.Replace(newStr, "c.vxtwitter.com");
+        newStr = REPLACE_FIX_TWITTER.Replace(newStr, "vxtwitter.com");
+        return REPLACE_FIX_X.Replace(newStr, "vxtwitter.com");
     }
 
     public static bool TryFullMatch(this Regex regex, string input, out Match? match)
