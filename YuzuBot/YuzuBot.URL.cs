@@ -1,7 +1,6 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using HtmlAgilityPack;
-using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
@@ -30,10 +29,10 @@ internal partial class YuzuBot
         doc.LoadHtml(content);
 
         var root = doc.DocumentNode;
-        var title = HttpUtility.HtmlDecode(root.SelectSingleNode("//head/title").GetDirectInnerText()); //타이틀
-        var titleHead = root.SelectSingleNode("//span[@class='title_headtext']")?.InnerText ?? null;
-        var contentNode = root.SelectSingleNode("//div[@class='view_content_wrap']");
-        var writter = contentNode.SelectSingleNode("//div[@class='gall_writer ub-writer']");
+        var title = HttpUtility.HtmlDecode(root.SelectSingleNode(".//head/title").GetDirectInnerText()); //타이틀
+        var titleHead = root.SelectSingleNode(".//span[@class='title_headtext']")?.InnerText ?? null;
+        var contentNode = root.SelectSingleNode(".//div[@class='view_content_wrap']");
+        var writter = root.SelectSingleNode(".//div[@class='gall_writer ub-writer']");
         var writterNick = writter.Attributes["data-nick"].Value;
         var writterUID = string.Empty;
         if (writter.Attributes.Contains("data-ip"))
@@ -46,46 +45,46 @@ internal partial class YuzuBot
         }
         writterNick += $" ({writterUID})";
 
-        var uploadDate = contentNode.SelectSingleNode("//span[@class='gall_date']").Attributes["title"].Value; //추천수
-        var like = contentNode.SelectSingleNode("//p[contains(@id, 'recommend_view_up_')]").InnerText; //추천수
-        var dislike = contentNode.SelectSingleNode("//p[@class='down_num']").InnerText; //비추수
+        var uploadDate = contentNode.SelectSingleNode(".//span[@class='gall_date']").Attributes["title"].Value; //추천수
+        var like = contentNode.SelectSingleNode(".//p[contains(@id, 'recommend_view_up_')]").InnerText; //추천수
+        var dislike = contentNode.SelectSingleNode(".//p[@class='down_num']").InnerText; //비추수
 
-        var viewNode = contentNode.SelectSingleNode("//div[@class='writing_view_box']");
+        var viewNode = contentNode.SelectSingleNode(".//div[@class='writing_view_box']");
 
         //Remove Items from DC Series (Except Title)
-        var seriesBoxes = viewNode.SelectNodes("//div[@class='dc_series']");
+        var seriesBoxes = viewNode.SelectNodes(".//div[@class='dc_series']");
         if (seriesBoxes != null)
         {
             foreach (var child in seriesBoxes.SelectMany(x => x.ChildNodes).ToArray())
             {
                 if (child.Name == "a")
-                    child.Remove();
+                    child.RemoveAll();
             }
         }
 
-        //Remove Zzalbang Images
-        var zzalbangDivs = viewNode.SelectNodes("//div[@id='zzbang_div']");
+        //Remove Default Zzalbang Images
+        var zzalbangDivs = viewNode.SelectNodes(".//div[@id='zzbang_div']");
         if (zzalbangDivs != null)
         {
             foreach (var child in zzalbangDivs.ToArray())
             {
-                child.Remove();
+                child.RemoveAll();
             }
         }
 
         //Remove External Video Area
-        var externalVids = viewNode.SelectNodes("//div[@class='og-div']");
+        var externalVids = viewNode.SelectNodes(".//div[@class='og-div']");
         if (externalVids != null)
         {
             foreach (var child in externalVids.ToArray())
             {
-                child.Remove();
+                child.RemoveAll();
             }
         }
 
         //Remove DC App Footer
-        var dcappfooter = viewNode.SelectSingleNode("//span[@id='dcappfooter']");
-        dcappfooter?.Remove();
+        var dcappfooter = viewNode.SelectSingleNode(".//span[@id='dcappfooter']");
+        dcappfooter?.RemoveAll();
 
         var texts = HttpUtility.HtmlDecode(viewNode.InnerText).Trim().ReplaceLineEndings(" ");
         var embedInfo = new DCInsidePost()
@@ -107,7 +106,7 @@ internal partial class YuzuBot
             allowedMentions: AllowedMentions.None);
 
         // Look for Images in post
-        var images = contentNode.SelectNodes("//img");
+        var images = viewNode.SelectNodes(".//img");
         if (images is null)
             return;
 
