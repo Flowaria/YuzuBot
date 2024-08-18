@@ -1,6 +1,8 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using HtmlAgilityPack;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Web;
 using YuzuBot.Modules;
@@ -99,61 +101,65 @@ internal partial class YuzuBot
             ThumbnailURL = Resources.DCThumnail
         };
 
-        var images = contentNode.SelectNodes("//img");
-        if (images != null)
-        {
-            Stream? embedFileStream = null;
-            foreach (var img in images)
-            {
-                var src = img.Attributes["src"].Value;
-                if (!src.ContainsIgnoreCase("dcinside.co.kr/viewimage.php?"))
-                    continue;
-
-                var match = RX.DC_IMAGE.Match(src);
-                if (match == null)
-                    continue;
-
-                var imgUrl = $"https://images.dcinside.com/{match.Value}";
-                using var imgMs = new MemoryStream();
-
-                var (success, fileName) = await TryGetContentFromURL(imgUrl, imgMs);
-                if (success && fileName != null)
-                {
-                    embedFileStream = imgMs;
-                    embedInfo.ThumbnailURL = $"attachment://{fileName}";
-                    await context.Channel.SendFileAsync(embedFileStream, fileName, embed: Embeds.BuildDCInside(embedInfo),
-                        messageReference: new MessageReference(context.Id),
-                        flags: MessageFlags.SuppressNotification,
-                        allowedMentions: AllowedMentions.None);
-                    return;
-                }
-            }
-        }
-
-        await context.Channel.SendMessageAsync(embed: Embeds.BuildDCInside(embedInfo),
+        var msg = await context.Channel.SendMessageAsync(embed: Embeds.BuildDCInside(embedInfo),
             messageReference: new MessageReference(context.Id),
             flags: MessageFlags.SuppressNotification,
             allowedMentions: AllowedMentions.None);
+
+        // Look for Images in post
+        var images = contentNode.SelectNodes("//img");
+        if (images is null)
+            return;
+
+        Stream? embedFileStream = null;
+        foreach (var img in images)
+        {
+            var src = img.Attributes["src"].Value;
+            if (!src.ContainsIgnoreCase("dcinside.co.kr/viewimage.php?"))
+                continue;
+
+            var match = RX.DC_IMAGE.Match(src);
+            if (match == null)
+                continue;
+
+            var imgUrl = $"https://images.dcinside.com/{match.Value}";
+            using var imgMs = new MemoryStream();
+
+            var (success, fileName) = await TryGetContentFromURL(imgUrl, imgMs);
+            if (!success)
+                continue;
+
+            if (string.IsNullOrEmpty(fileName))
+                continue;
+
+            embedFileStream = imgMs;
+            embedInfo.ThumbnailURL = $"attachment://{fileName}";
+            await msg.ModifyAsync(props =>
+            {
+                props.Attachments = new FileAttachment[] { new(imgMs, fileName) };
+                props.Embed = Embeds.BuildDCInside(embedInfo with { ThumbnailURL = $"attachment://{fileName}" });
+            });
+            return;
+        }
     }
 
     private static async Task<(bool Success, string? FileName)> TryGetContentFromURL(string url, Stream outputStream)
     {
-        using var wc = new HttpClient();
-        using var req = new HttpRequestMessage(HttpMethod.Get, url);
-        var headers = req.Headers;
-        headers.Add("Connection", "keep-alive");
-        headers.Add("Cache-Control", "no-cache");
-        headers.Add("sec-ch-ua-mobile", "?0");
-        headers.Add("DNT", "1");
-        headers.Add("Upgrade-Insecure-Requests", "1");
-        headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36");
+        using var wc = new HttpClient(new HttpClientHandler()
+        {
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+        });
+
+        var headers = wc.DefaultRequestHeaders;
         headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-        headers.Add("Sec-Fetch-Site", "none");
-        headers.Add("Sec-Fetch-Mode", "navigate");
-        headers.Add("Sec-Fetch-User", "?1");
-        headers.Add("Sec-Fetch-Dest", "document");
-        headers.Add("Accept-Encoding", "gzip, deflate, br");
+        headers.Add("Accept-Encoding", "gzip, deflate");
         headers.Add("Accept-Language", "ko-KR,ko;q=0.9");
+        headers.Add("Cache-Control", "no-age=0");
+        headers.Add("Connection", "keep-alive");
+        headers.Add("Sec-Ch-Ua", "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"");
+        headers.Add("Sec-Ch-Ua-Mobile", "?0");
+        headers.Add("Sec-Ch-Ua-Platform", "\"Windows\"");
+        headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
 
         using var res = await wc.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
         if (res.IsSuccessStatusCode)
