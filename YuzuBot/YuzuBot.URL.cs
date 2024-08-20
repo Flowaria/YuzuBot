@@ -146,7 +146,8 @@ internal partial class YuzuBot
     {
         using var wc = new HttpClient(new HttpClientHandler()
         {
-            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+            AllowAutoRedirect = true
         });
 
         var headers = wc.DefaultRequestHeaders;
@@ -161,7 +162,7 @@ internal partial class YuzuBot
         headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
 
         using var res = await wc.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
-        if (res.IsSuccessStatusCode)
+        if (res.IsSuccessOrRedirectCode())
         {
             var prevPos = outputStream.Position;
             await res.Content.CopyToAsync(outputStream);
