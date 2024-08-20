@@ -11,6 +11,33 @@ internal partial class YuzuBot
 {
     private async Task ProcessURL(IMessage context, SocketGuildUser author, string url)
     {
+        // Process Mobile Dcinside URL
+        if (url.ContainsIgnoreCase("m.dcinside.com/"))
+        {
+            var match = RX.DC_MOBILE.Match(url);
+            if (!match.Success)
+                return;
+
+            if (match.Groups.Count < 3)
+                return;
+
+            //WHY??
+            url = $"https://gall.dcinside.com/board/view?id={match.Groups[1]}&no={match.Groups[2]}";
+
+            using var ms = new MemoryStream();
+            if (!(await TryGetContentFromURL(url, outputStream: ms)).Success)
+                return;
+
+            using var sr = new StreamReader(ms, Encoding.UTF8);
+            var content = await sr.ReadToEndAsync();
+
+            var urlMatch = RX.HTTPURL.Match(content);
+            if (!urlMatch.Success)
+                return;
+
+            url = urlMatch.Value;
+        }
+
         if (url.ContainsIgnoreCase("dcinside.com/"))
         {
             await ProcessURL_DCInside(context, author, url);
@@ -25,6 +52,7 @@ internal partial class YuzuBot
 
         using var sr = new StreamReader(ms, Encoding.UTF8);
         var content = await sr.ReadToEndAsync();
+        File.WriteAllText("debug.html", content);
         var doc = new HtmlDocument();
         doc.LoadHtml(content);
 
