@@ -11,6 +11,7 @@ internal static class RX
     public static readonly Regex REPLACE_FIX_PIXIV = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)pixiv\.net", RegexOptions.IgnoreCase);
     public static readonly Regex REPLACE_FIX_TWITTER = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)twitter\.com", RegexOptions.IgnoreCase);
     public static readonly Regex REPLACE_FIX_X = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)x\.com", RegexOptions.IgnoreCase);
+    public static readonly Regex REPLACE_FIX_BSKY = new(@"(?<=http[s]?:\/\/[a-zA-Z0-9]+\.|\/\/)bsky\.app", RegexOptions.IgnoreCase);
 
     public static readonly Regex GACHA_STAT_NUMBER = new(@"(?<=\>x)[0-9|]*");
 
@@ -18,6 +19,7 @@ internal static class RX
     {
         var newStr = REPLACE_FIX_PIXIV.Replace(content, "ppxiv.net");
         newStr = REPLACE_FIX_TWITTER.Replace(newStr, "vxtwitter.com");
+        newStr = REPLACE_FIX_BSKY.Replace(newStr, "bsyy.app");
         return REPLACE_FIX_X.Replace(newStr, "vxtwitter.com");
     }
 

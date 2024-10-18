@@ -172,11 +172,13 @@ internal partial class YuzuBot
 
     private static async Task<(bool Success, string? FileName)> TryGetContentFromURL(string url, Stream outputStream)
     {
-        using var wc = new HttpClient(new HttpClientHandler()
+        using var wcHandler = new HttpClientHandler()
         {
             AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
             AllowAutoRedirect = true
-        });
+        };
+
+        using var wc = new HttpClient(wcHandler);
 
         var headers = wc.DefaultRequestHeaders;
         headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
@@ -189,7 +191,8 @@ internal partial class YuzuBot
         headers.Add("Sec-Ch-Ua-Platform", "\"Windows\"");
         headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
 
-        using var res = await wc.SendAsync(new HttpRequestMessage(HttpMethod.Get, url));
+        using var req = new HttpRequestMessage(HttpMethod.Get, url);
+        using var res = await wc.SendAsync(req);
         if (res.IsSuccessOrRedirectCode())
         {
             var prevPos = outputStream.Position;
