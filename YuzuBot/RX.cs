@@ -19,7 +19,7 @@ internal static class RX
     {
         var newStr = REPLACE_FIX_PIXIV.Replace(content, "ppxiv.net");
         newStr = REPLACE_FIX_TWITTER.Replace(newStr, "vxtwitter.com");
-        newStr = REPLACE_FIX_BSKY.Replace(newStr, "bsyy.app");
+        newStr = REPLACE_FIX_BSKY.Replace(newStr, "bskye.app");
         return REPLACE_FIX_X.Replace(newStr, "vxtwitter.com");
     }
 
