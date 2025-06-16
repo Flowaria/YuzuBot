@@ -6,6 +6,15 @@ namespace YuzuBot.Modules;
 
 internal static class Embeds
 {
+    public static Embed BuildSenderFooter(SocketGuildUser user)
+    {
+        var embed = new EmbedBuilder()
+            .WithAuthor(user)
+            .WithColor(user.GetDisplayColor());
+
+        return embed.Build();
+    }
+
     public static Embed BuildDCInside(DCInsidePost post)
     {
         var embed = new EmbedBuilder()

@@ -60,7 +60,19 @@ internal partial class YuzuBot
                 if (!fixedMessage.EqualsIgnoreCase(trimmedContent))
                 {
                     _ = msg.DeleteAsync();
-                    var messageID = await SendWebhook(fixedMessage, msg.Channel, author);
+
+                    ulong messageID = 0;
+                    if (arg.Channel is IThreadChannel)
+                    {
+                        var sentMessage = await arg.Channel.SendMessageAsync(fixedMessage);
+                        var footer = await arg.Channel.SendMessageAsync(embed: Embeds.BuildSenderFooter(author), messageReference: sentMessage.Reference);
+                        messageID = sentMessage.Id;
+                    }
+                    else
+                    {
+                        messageID = await SendWebhook(fixedMessage, msg.Channel, author);
+                    }
+
                     contextMessage = await msg.Channel.GetMessageAsync(messageID);
                 }
 
@@ -95,7 +107,7 @@ internal partial class YuzuBot
 
             embed = YuzuChatBox.Create("방금 그건 잊어주세요!!! 이게 제 상태에요!!", expression: YuzuExpression.Despair);
             embed.AddField("메모리 사용량", $"{process.WorkingSet64 / (1024.0f * 1024.0f):0.0}MB", inline: true);
-            
+
             var upTime = DateTime.Now - _ReadyTime;
             var upTimeString = $"{upTime.Days}d:{upTime.Hours}h:{upTime.Minutes}m:{upTime.Seconds}s";
             embed.AddField("업타임", upTimeString, inline: true);
