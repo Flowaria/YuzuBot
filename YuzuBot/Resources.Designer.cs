@@ -61,7 +61,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157699755590303925/dc_logo.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/dc_logo.svg.
         /// </summary>
         internal static string DCThumnail {
             get {
@@ -124,7 +124,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696388990242987/yuzu_a.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_a.png.
         /// </summary>
         internal static string YuzuImage_A {
             get {
@@ -133,7 +133,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696389506154596/yuzu_cry.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_cry.png.
         /// </summary>
         internal static string YuzuImage_Cry {
             get {
@@ -142,7 +142,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696389908811908/yuzu_default.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_default.png.
         /// </summary>
         internal static string YuzuImage_Default {
             get {
@@ -151,7 +151,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696390349209620/yuzu_despair.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_despair.png.
         /// </summary>
         internal static string YuzuImage_Despair {
             get {
@@ -160,7 +160,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696390630215800/yuzu_determined.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_determined.png.
         /// </summary>
         internal static string YuzuImage_Determined {
             get {
@@ -169,7 +169,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696390932222103/yuzu_fear.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_fear.png.
         /// </summary>
         internal static string YuzuImage_Fear {
             get {
@@ -178,7 +178,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696391259365426/yuzu_kimo.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_kimo.png.
         /// </summary>
         internal static string YuzuImage_Kimo {
             get {
@@ -187,7 +187,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696391498453012/yuzu_mataku.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_mataku.png.
         /// </summary>
         internal static string YuzuImage_Mataku {
             get {
@@ -196,7 +196,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696391695581234/yuzu_smile.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_smile.png.
         /// </summary>
         internal static string YuzuImage_Smile {
             get {
@@ -205,7 +205,7 @@ namespace YuzuBot {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://cdn.discordapp.com/attachments/1157692490099462274/1157696391964004382/yuzu_smile_small.png.
+        ///   Looks up a localized string similar to http://flowaria.iptime.org/img/yuzu_smile_small.png.
         /// </summary>
         internal static string YuzuImage_SmileSmall {
             get {

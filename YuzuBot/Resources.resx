@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DCThumnail" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157699755590303925/dc_logo.png</value>
+    <value>http://flowaria.iptime.org/img/dc_logo.svg</value>
   </data>
   <data name="Emote_Eligma" xml:space="preserve">
     <value>&lt;:eligma:1161526665286013000&gt;</value>
@@ -139,33 +139,33 @@
     <value>&lt;:pyroxene:1161527096389144626&gt;</value>
   </data>
   <data name="YuzuImage_A" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696388990242987/yuzu_a.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_a.png</value>
   </data>
   <data name="YuzuImage_Cry" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696389506154596/yuzu_cry.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_cry.png</value>
   </data>
   <data name="YuzuImage_Default" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696389908811908/yuzu_default.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_default.png</value>
   </data>
   <data name="YuzuImage_Despair" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696390349209620/yuzu_despair.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_despair.png</value>
   </data>
   <data name="YuzuImage_Determined" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696390630215800/yuzu_determined.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_determined.png</value>
   </data>
   <data name="YuzuImage_Fear" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696390932222103/yuzu_fear.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_fear.png</value>
   </data>
   <data name="YuzuImage_Kimo" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696391259365426/yuzu_kimo.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_kimo.png</value>
   </data>
   <data name="YuzuImage_Mataku" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696391498453012/yuzu_mataku.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_mataku.png</value>
   </data>
   <data name="YuzuImage_Smile" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696391695581234/yuzu_smile.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_smile.png</value>
   </data>
   <data name="YuzuImage_SmileSmall" xml:space="preserve">
-    <value>https://cdn.discordapp.com/attachments/1157692490099462274/1157696391964004382/yuzu_smile_small.png</value>
+    <value>http://flowaria.iptime.org/img/yuzu_smile_small.png</value>
   </data>
 </root>
