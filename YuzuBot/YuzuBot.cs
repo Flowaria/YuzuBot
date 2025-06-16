@@ -53,7 +53,7 @@ internal partial class YuzuBot
         while (true)
         {
             GC.Collect();
-            await Task.Delay(1000 * 10);
+            await Task.Delay(TimeSpan.FromSeconds(10));
         }
     }
 
