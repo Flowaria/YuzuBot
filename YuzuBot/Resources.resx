@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DCThumnail" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/dc_logo.svg</value>
+    <value>/img/dc_logo.svg</value>
   </data>
   <data name="Emote_Eligma" xml:space="preserve">
     <value>&lt;:eligma:1161526665286013000&gt;</value>
@@ -138,34 +138,37 @@
   <data name="Emote_Pyroxene" xml:space="preserve">
     <value>&lt;:pyroxene:1161527096389144626&gt;</value>
   </data>
+  <data name="ResourceBaseURL" xml:space="preserve">
+    <value>http://flowaria.iptime.org:888/yuzu</value>
+  </data>
   <data name="YuzuImage_A" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_a.png</value>
+    <value>/img/yuzu_a.png</value>
   </data>
   <data name="YuzuImage_Cry" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_cry.png</value>
+    <value>/img/yuzu_cry.png</value>
   </data>
   <data name="YuzuImage_Default" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_default.png</value>
+    <value>/img/yuzu_default.png</value>
   </data>
   <data name="YuzuImage_Despair" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_despair.png</value>
+    <value>/img/yuzu_despair.png</value>
   </data>
   <data name="YuzuImage_Determined" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_determined.png</value>
+    <value>/img/yuzu_determined.png</value>
   </data>
   <data name="YuzuImage_Fear" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_fear.png</value>
+    <value>/img/yuzu_fear.png</value>
   </data>
   <data name="YuzuImage_Kimo" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_kimo.png</value>
+    <value>/img/yuzu_kimo.png</value>
   </data>
   <data name="YuzuImage_Mataku" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_mataku.png</value>
+    <value>/img/yuzu_mataku.png</value>
   </data>
   <data name="YuzuImage_Smile" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_smile.png</value>
+    <value>/img/yuzu_smile.png</value>
   </data>
   <data name="YuzuImage_SmileSmall" xml:space="preserve">
-    <value>http://flowaria.iptime.org/img/yuzu_smile_small.png</value>
+    <value>/img/yuzu_smile_small.png</value>
   </data>
 </root>

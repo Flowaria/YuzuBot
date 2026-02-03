@@ -7,6 +7,7 @@ using System.Web;
 using YuzuBot.Modules;
 
 namespace YuzuBot;
+
 internal partial class YuzuBot
 {
     private async Task ProcessURL(IMessage context, SocketGuildUser author, string url)
@@ -125,7 +126,7 @@ internal partial class YuzuBot
             DislikeCount = dislike,
             UploadDate = uploadDate,
             Writter = writterNick,
-            ThumbnailURL = Resources.DCThumnail
+            ThumbnailURL = Resources.ResourceBaseURL + Resources.DCThumnail
         };
 
         var msg = await context.Channel.SendMessageAsync(embed: Embeds.BuildDCInside(embedInfo),
